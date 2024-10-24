@@ -1,0 +1,90 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #F4F4F9;
+    margin: 0;
+    padding: 0;
+}
+
+/* Header */
+header {
+    background-color: #A7C7E7;
+    padding: 15px;
+}
+
+.header-left h1 {
+    margin: 0;
+    color: #fff;
+}
+
+/* Container */
+.container {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #FAFAFA;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+h2, h3 {
+    color: #333;
+}
+
+/* Textarea and button */
+textarea {
+    width: 100%;
+    height: 100px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    margin-bottom: 10px;
+}
+
+input[type="submit"] {
+    padding: 10px 20px;
+    background-color: #70a19d;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+input[type="submit"]:hover {
+    background-color: #80CBC4;
+}
+
+/* Bento box for comments */
+.comment-stack {
+    margin-top: 30px;
+}
+
+.comment-box {
+    background-color: #FAFAFA;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 10px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.comment-box p {
+    margin: 5px 0;
+}
+/* Container for stacking comments */
+.comment-stack {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column; /* Stack comments vertically */
+    gap: 10px; /* Add some space between each comment */
+}
+
+/* Each comment box */
+.comment-box {
+    background-color: #FAFAFA;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}

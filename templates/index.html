@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sentiment Analyxer</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+     <!--Header -->
+    <header>
+        <div class="header-left">
+            <h1>SentiGrade</h1>
+        </div>
+    </header>
+
+    <!--Main Content --->
+    <div class="container">
+        <h2>Sentiment Analysis Chatbox</h2>
+        <form method="POST">
+            <textarea name="comment" placeholder="Type your comment here..." required></textarea><br>
+            <input type="submit" value="Analyze">
+        </form>
+        
+        {% if comment %}
+            <p><strong>Your comment:</strong> {{ comment }}</p>
+        {% endif %}
+        
+        {% if sentiment %}
+            <h2>The sentiment of the comment is: {{ sentiment }}</h2>
+        {% endif %}
+
+        <!-- Display previous comments -->
+        <div class="comment-stack">
+            <h3>Previous Comments:</h3>
+            {% for entry in previous_comments %}
+                <div class="comment-box">
+                    <p><strong>Comment:</strong> {{ entry.comment }}</p>
+                    <p><strong>Sentiment:</strong> {{ entry.sentiment }}</p>
+                    <p><small><strong>Time:</strong> {{ entry.timestamp }}</small></p>
+                </div>
+            {% else %}
+                <p>No previous comments yet.</p>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>
+<!-- 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sentiment Analysis App</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #F4F4F9;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Header */
+        header {
+            background-color: #A7C7E7;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header h1 {
+            margin: 0;
+            color: #fff;
+        }
+
+        header button {
+            padding: 10px 15px;
+            background-color: #fff;
+            color: #A7C7E7;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        /* Container */
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #FAFAFA;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2, h3 {
+            color: #333;
+        }
+
+        /* Textarea and button */
+        textarea {
+            width: 100%;
+            height: 100px;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            margin-bottom: 10px;
+            transition: border-color 0.3s;
+        }
+
+        textarea:focus {
+            border-color: #A7C7E7;
+        }
+
+        input[type="submit"] {
+            padding: 10px 20px;
+            background-color: #B2DFDB;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #80CBC4;
+        }
+
+        /* Comment Stack */
+        .comment-stack {
+            margin-top: 30px;
+        }
+
+        .comment-box {
+            background-color: #FAFAFA;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 10px;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+            animation: slideIn 0.3s ease-out;
+        }
+
+        .comment-box p {
+            margin: 5px 0;
+        }
+
+        /* Animations */
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Dark Mode */
+        .dark-mode {
+            background-color: #333;
+            color: #fff;
+        }
+
+        .dark-mode .comment-box {
+            background-color: #555;
+            color: #ddd;
+            border: 1px solid #888;
+        }
+
+        .dark-mode header {
+            background-color: #555;
+        }
+
+        .dark-mode header button {
+            background-color: #A7C7E7;
+            color: #fff;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 600px) {
+            .container {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Sentiment Analysis App</h1>
+        <button onclick="toggleTheme()">Toggle Dark Mode</button>
+    </header>
+
+    <div class="container">
+        <h2>Submit Your Comment</h2>
+        <form id="commentForm">
+            <textarea id="commentInput" placeholder="Type your comment here"></textarea>
+            <input type="submit" value="Analyze">
+        </form>
+
+        <div class="comment-stack" id="commentStack">
+            <h3>Comments:</h3>
+        </div>
+    </div>
+
+    <script>
+        // Dark Mode Toggle
+        function toggleTheme() {
+            document.body.classList.toggle('dark-mode');
+        }
+
+        // Handle Comment Submission
+        const commentForm = document.getElementById('commentForm');
+        const commentInput = document.getElementById('commentInput');
+        const commentStack = document.getElementById('commentStack');
+
+        commentForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+            const commentText = commentInput.value;
+
+            if (commentText) {
+                // Create a new comment element
+                const commentBox = document.createElement('div');
+                commentBox.className = 'comment-box';
+                commentBox.innerHTML = `<p>${commentText}</p>`;
+
+                // Add the new comment to the top of the comment stack
+                commentStack.insertBefore(commentBox, commentStack.firstChild);
+
+                // Clear the textarea
+                commentInput.value = '';
+            }
+        });
+    </script>
+</body>
+</html>
+-->
