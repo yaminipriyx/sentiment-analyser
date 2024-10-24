@@ -55,9 +55,12 @@ input[type="submit"]:hover {
     background-color: #80CBC4;
 }
 
-/* Bento box for comments */
+/* Comment Stack */
 .comment-stack {
     margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
 .comment-box {
@@ -65,26 +68,24 @@ input[type="submit"]:hover {
     border: 1px solid #ddd;
     border-radius: 8px;
     padding: 15px;
-    margin-bottom: 10px;
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .comment-box p {
     margin: 5px 0;
 }
-/* Container for stacking comments */
-.comment-stack {
-    margin-top: 30px;
-    display: flex;
-    flex-direction: column; /* Stack comments vertically */
-    gap: 10px; /* Add some space between each comment */
+
+/* Feedback Summary */
+.feedback-summary {
+    margin-top: 20px;
+    background-color: #f0f0f0;
+    padding: 15px;
+    border-radius: 8px;
+    text-align: left;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-/* Each comment box */
-.comment-box {
-    background-color: #FAFAFA;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    padding: 15px;
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+.feedback-summary p {
+    font-size: 16px;
+    margin: 10px 0;
 }
